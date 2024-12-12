@@ -20,7 +20,7 @@ const ProductsPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const url = `http://localhost:5000`;
+      const url = `https://bush-chivalrous-cornucopia.glitch.me`;
       const response = await fetch(url + '/api/menu');
   
       if (!response.ok) {
@@ -53,7 +53,7 @@ const ProductsPage = () => {
     }
 
     try {
-      const url = `http://localhost:5000`;
+      const url = `https://bush-chivalrous-cornucopia.glitch.me`;
       const response = await fetch(url + `/api/menu?search=${searchQuery.toLowerCase()}`);
 
       if (!response.ok) {
@@ -79,7 +79,7 @@ const ProductsPage = () => {
       setIsLoading(false);
       return;
     }
-    const url = `http://localhost:5000`;
+    const url = `https://bush-chivalrous-cornucopia.glitch.me`;
     fetch(url + `/api/menu?kategori=${category.toLowerCase()}`)
       .then((response) => response.json())
       .then((data) => {

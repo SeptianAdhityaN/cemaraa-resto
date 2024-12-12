@@ -17,7 +17,7 @@ const Navbar = (props) => {
 
     const fetchProducts = async () => {
       try {
-        const url = 'http://localhost:5000';
+        const url = 'https://bush-chivalrous-cornucopia.glitch.me';
         const response = await fetch(url + '/api/menu')
 
         if (!response.ok) {
