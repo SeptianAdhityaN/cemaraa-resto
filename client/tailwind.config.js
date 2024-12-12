@@ -15,6 +15,7 @@ export default {
     },
   },
   plugins: [
+    import ('daisyui'),
   ],
 }
 
