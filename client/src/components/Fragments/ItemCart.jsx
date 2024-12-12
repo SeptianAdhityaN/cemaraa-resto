@@ -1,5 +1,3 @@
-import Button from '../Elements/Button';
-
 const ItemCart = (props) => {
   const { children } = props;
   return (

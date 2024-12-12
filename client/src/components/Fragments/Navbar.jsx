@@ -51,7 +51,6 @@ const Navbar = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("email");
-    window.location.href = "/login";
   };
 
   return (
@@ -119,7 +118,7 @@ const Navbar = (props) => {
               </a>
             </li>
             <li><a>Settings</a></li>
-            <Button classname="bg-red-500 hover:bg-red-700 h-8 my-2" onClick={handleLogout}>Logout</Button>
+            <Link to={"/login"}><Button classname="bg-red-500 hover:bg-red-700 h-8 my-2" onClick={handleLogout}>Logout</Button></Link>
           </ul>
         </div>
       </div>

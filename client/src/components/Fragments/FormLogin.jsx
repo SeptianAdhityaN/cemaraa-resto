@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 import Button from "../Elements/Button";
 import InputForm from "../Elements/Input";
+import { Link } from "react-router-dom";
 
 const FormLogin = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     localStorage.setItem('username', event.target.username.value);
-    window.location.href = "/";
   };
 
   const usernameRef = useRef(null);
@@ -31,7 +31,7 @@ const FormLogin = () => {
         placeholder="********"
       />
 
-      <Button classname="bg-primary w-full" type="submit">Login</Button>
+      <Link to={"/"}><Button classname="bg-primary w-full" type="submit">Login</Button></Link>
     </form>
   );
 };

@@ -174,6 +174,8 @@ const ProductsPage = () => {
   
   const images = [
     "",
+    "",
+    "",
   ];
 
   return (
