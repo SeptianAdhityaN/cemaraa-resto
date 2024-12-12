@@ -1,0 +1,194 @@
+[
+  {
+    "nama": "Nasi Goreng Spesial",
+    "deskripsi": "Nasi goreng dengan telur, ayam, dan sayuran, disajikan dengan kerupuk dan acar.",
+    "harga": 25000.00,
+    "path_gambar": "/images/menu/nasi_goreng_spesial.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Sate Ayam",
+    "deskripsi": "Sate ayam dengan bumbu kacang khas, disajikan dengan nasi putih dan lalapan.",
+    "harga": 30000.00,
+    "path_gambar": "/images/menu/sate_ayam.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Mie Goreng Jawa",
+    "deskripsi": "Mie goreng dengan bumbu pedas, sayuran, dan ayam suwir, disajikan dengan kerupuk.",
+    "harga": 22000.00,
+    "path_gambar": "/images/menu/mie_goreng_jawa.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Ayam Penyet",
+    "deskripsi": "Ayam goreng yang dipenyet dengan sambal terasi pedas, disajikan dengan nasi putih dan lalapan.",
+    "harga": 35000.00,
+    "path_gambar": "/images/menu/ayam_penyet.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Burger Daging",
+    "deskripsi": "Burger dengan daging sapi berkualitas, selada, tomat, dan saus spesial.",
+    "harga": 40000.00,
+    "path_gambar": "/images/menu/burger_daging.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Pasta Carbonara",
+    "deskripsi": "Pasta dengan saus krim, bacon, dan taburan keju parmesan.",
+    "harga": 45000.00,
+    "path_gambar": "/images/menu/pasta_carbonara.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Tahu Tempe Bacem",
+    "deskripsi": "Tahu dan tempe yang dibacem dengan bumbu manis, disajikan dengan nasi putih.",
+    "harga": 18000.00,
+    "path_gambar": "/images/menu/tahu_tempe_bacem.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Mie Ayam",
+    "deskripsi": "Mie ayam dengan potongan ayam, sawi, dan kuah kaldu gurih.",
+    "harga": 20000.00,
+    "path_gambar": "/images/menu/mie_ayam.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Pizza Margherita",
+    "deskripsi": "Pizza dengan topping tomat, mozzarella, dan basil segar.",
+    "harga": 75000.00,
+    "path_gambar": "/images/menu/pizza_margherita.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Rendang Daging",
+    "deskripsi": "Daging sapi yang dimasak dengan bumbu rendang yang kaya rempah.",
+    "harga": 50000.00,
+    "path_gambar": "/images/menu/rendang_daging.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Gado-Gado",
+    "deskripsi": "Salad sayuran dengan bumbu kacang, telur, tahu, dan tempe.",
+    "harga": 23000.00,
+    "path_gambar": "/images/menu/gado_gado.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Nasi Campur Bali",
+    "deskripsi": "Nasi putih dengan berbagai lauk khas Bali seperti ayam, babi, sate lilit, dan sambal matah.",
+    "harga": 45000.00,
+    "path_gambar": "/images/menu/nasi_campur_bali.jpg",
+    "kategori": "Makanan",
+    "ketersediaan": true
+  },  
+  {
+    "nama": "Es Teh Manis",
+    "deskripsi": "Teh manis dingin dengan es batu, cocok untuk menemani makanan Anda.",
+    "harga": 10000.00,
+    "path_gambar": "/images/menu/es_teh_manis.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Jus Jeruk Segar",
+    "deskripsi": "Jus jeruk murni yang segar dan manis, menyegarkan di hari yang panas.",
+    "harga": 15000.00,
+    "path_gambar": "/images/menu/jus_jeruk.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Kopi Susu",
+    "deskripsi": "Kopi hitam dengan campuran susu manis, cocok untuk penikmat kopi.",
+    "harga": 18000.00,
+    "path_gambar": "/images/menu/kopi_susu.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Air Mineral",
+    "deskripsi": "Air mineral dingin, menyegarkan dan menyehatkan.",
+    "harga": 5000.00,
+    "path_gambar": "/images/menu/air_mineral.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Es Kelapa Muda",
+    "deskripsi": "Kelapa muda segar yang disajikan dengan es batu dan sirup manis.",
+    "harga": 15000.00,
+    "path_gambar": "/images/menu/es_kelapa_muda.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Jus Alpukat",
+    "deskripsi": "Jus alpukat kental dengan campuran susu dan gula merah, enak dan creamy.",
+    "harga": 18000.00,
+    "path_gambar": "/images/menu/jus_alpukat.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Teh Tarik",
+    "deskripsi": "Teh manis dengan susu kental manis yang dikocok hingga berbusa.",
+    "harga": 12000.00,
+    "path_gambar": "/images/menu/teh_tarik.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Soda Gembira",
+    "deskripsi": "Minuman soda dengan campuran sirup dan susu, menyegarkan dan manis.",
+    "harga": 13000.00,
+    "path_gambar": "/images/menu/soda_gembira.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Jus Mangga",
+    "deskripsi": "Jus mangga segar dengan rasa manis alami dan rasa buah yang kental.",
+    "harga": 17000.00,
+    "path_gambar": "/images/menu/jus_mangga.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Cappuccino",
+    "deskripsi": "Kopi espresso dengan susu panas dan foam susu yang lembut di atasnya.",
+    "harga": 22000.00,
+    "path_gambar": "/images/menu/cappuccino.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Smoothie Berry",
+    "deskripsi": "Smoothie buah berry dengan campuran yoghurt dan sedikit madu.",
+    "harga": 25000.00,
+    "path_gambar": "/images/menu/smoothie_berry.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  },
+  {
+    "nama": "Milkshake Coklat",
+    "deskripsi": "Milkshake coklat dengan es krim vanila yang creamy dan manis.",
+    "harga": 23000.00,
+    "path_gambar": "/images/menu/milkshake_coklat.jpg",
+    "kategori": "Minuman",
+    "ketersediaan": true
+  }
+]
