@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 const Banner = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef(null);
+  const touchStartRef = useRef(0);
+  const touchEndRef = useRef(0);
 
   useEffect(() => {
     const startAutoSlide = () => {
