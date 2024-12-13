@@ -172,19 +172,16 @@ const ProductsPage = () => {
     setSelectedProduct(null);
   };
 
-  const images = [
-      "/images/banner.jpeg",
-      "/images/banner.jpeg",
-    ];
+  const images = ["/images/banner.jpeg", "/images/banner.jpeg"];
 
   return (
     <div className="bg-background flex flex-col items-center">
       <Navbar />
 
-      <Banner images={images}></Banner>
+      <Banner images={images} />
 
-      <div className="flex justify-center mt-5 w-full px-10">
-        <div className="form-control px-2 sm:w-[50%] w-full block">
+      <div className="flex flex-col sm:flex-row justify-center mt-5 w-full px-5 sm:px-10">
+        <div className="form-control sm:w-[50%] w-full block">
           <input
             type="text"
             placeholder="Cari produk..."
@@ -194,97 +191,86 @@ const ProductsPage = () => {
           />
         </div>
         <Button
-          classname="bg-primary hover:bg-emerald-700 sm:px-4 sm:h-10 w-20 text-sm sm:text-md"
+          classname="bg-primary hover:bg-emerald-700 mt-2 sm:mt-0 sm:ml-2 sm:px-4 sm:h-10 w-full sm:w-20 text-sm sm:text-md"
           onClick={handleSearch}
         >
           Cari
         </Button>
       </div>
 
-      <div className="flex justify-center mt-5">
-        <div className="flex gap-4">
-          {categories.map((category, index) => (
-            <Button
-              key={index}
-              classname={`${
-                selectedCategory === category ? "bg-primary" : "bg-gray-500 hover:bg-emerald-700"
-              } text-white p-2 rounded-md`}
-              onClick={() => handleCategoryChange(category)}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+      <div className="flex justify-center mt-5 flex-wrap gap-2 px-2 sm:px-5">
+        {categories.map((category, index) => (
+          <Button
+            key={index}
+            classname={`${
+              selectedCategory === category
+                ? "bg-primary"
+                : "bg-gray-500 hover:bg-emerald-700"
+            } text-white p-2 rounded-md`}
+            onClick={() => handleCategoryChange(category)}
+          >
+            {category}
+          </Button>
+        ))}
       </div>
 
       {isLoading ? (
-        <div className="flex justify-center mt-5">
-          <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md">
-            {Array.from({
-              length: 10,
-            }).map((_, index) => (
-              <div key={index} className="flex w-52 flex-col m-2 gap-2 mb-6">
-                <div className="skeleton h-32 sm:h-40 w-full"></div>
-                <div className="skeleton h-4 w-28"></div>
-                <div className="skeleton h-4 w-full"></div>
-                <div className="skeleton h-4 w-full"></div>
-              </div>
-            ))}
-          </div>
+        <div className="flex justify-center mt-5 flex-wrap px-5">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div key={index} className="w-40 sm:w-52 m-2">
+              <div className="skeleton h-32 sm:h-40 w-full"></div>
+              <div className="skeleton h-4 w-28 mt-2"></div>
+              <div className="skeleton h-4 w-full mt-1"></div>
+              <div className="skeleton h-4 w-full mt-1"></div>
+            </div>
+          ))}
         </div>
       ) : (
-        <div className="flex justify-center mt-5">
-          <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md px-4">
-            {products.length > 0 &&
-              products.map((product) => {
-                return (
-                  <CardProduct key={product.id}>
-                    <CardProduct.Header
-                      path_gambar={product.path_gambar}
-                      nama={product.nama}
-                    />
-                    <CardProduct.Body
-                      nama={product.nama}
-                      harga={product.harga}
-                    />
-                    <CardProduct.Footer
-                      onClick={() => {
-                        handleProductClick(product);
-                      }}
-                      onAddToCart={() => {
-                        handleAddToCart(product.id, product.nama);
-                      }}
-                    />
-                  </CardProduct>
-                );
-              })}
-          </div>
+        <div className="flex justify-center my-5 flex-wrap px-5">
+          {products.map((product) => (
+            <CardProduct key={product.id} className="w-40 sm:w-52 m-2">
+              <CardProduct.Header
+                path_gambar={product.path_gambar}
+                nama={product.nama}
+              />
+              <CardProduct.Body nama={product.nama} harga={product.harga} />
+              <CardProduct.Footer
+                onClick={() => handleProductClick(product)}
+                onAddToCart={() => handleAddToCart(product.id, product.nama)}
+              />
+            </CardProduct>
+          ))}
         </div>
       )}
 
       {isModalOpen && selectedProduct && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-5 rounded-md w-3/4 md:w-1/3">
-            <h2 className="text-2xl font-bold">{selectedProduct.nama}</h2>
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 px-4">
+          <div className="bg-white p-5 rounded-md w-full sm:w-3/4 md:w-1/2">
+            <h2 className="text-xl sm:text-2xl font-bold">
+              {selectedProduct.nama}
+            </h2>
             <img
               src={selectedProduct.path_gambar}
               alt={selectedProduct.nama}
-              className="my-3"
+              className="my-3 w-full"
             />
             <p>{selectedProduct.deskripsi}</p>
-            <p className="font-semibold">
+            <p className="font-semibold mt-2">
               Harga:{" "}
               {selectedProduct.harga.toLocaleString("id-ID", {
                 style: "currency",
                 currency: "IDR",
               })}
             </p>
-            <div className="flex gap-4 items-center mt-4">
-              <Button onClick={handleCloseModal} classname="bg-red-500 hover:bg-red-700 w-1/2">
+            <div className="flex flex-col sm:flex-row gap-2 mt-4">
+              <Button
+                onClick={handleCloseModal}
+                classname="bg-red-500 hover:bg-red-700 w-full sm:w-1/2"
+              >
                 Kembali
               </Button>
               <Button
-                classname="w-1/2 bg-primary hover:bg-emerald-700"
+                classname="bg-primary hover:bg-emerald-700 w-full sm:w-1/2"
                 onClick={() =>
                   handleAddToCart(selectedProduct.id, selectedProduct.nama)
                 }
@@ -295,6 +281,7 @@ const ProductsPage = () => {
           </div>
         </div>
       )}
+
       <Footer />
     </div>
   );

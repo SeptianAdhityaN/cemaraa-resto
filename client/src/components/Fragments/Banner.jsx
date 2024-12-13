@@ -22,15 +22,35 @@ const Banner = ({ images }) => {
     );
   };
 
-  // Fungsi untuk menggeser ke slide sebelumnya
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
+  const handleTouchStart = (e) => {
+    touchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartRef.current - touchEndRef.current;
+    if (swipeDistance > 50) {
+      nextSlide();
+    } else if (swipeDistance < -50) {
+      prevSlide();
+    }
+  };
+
   return (
-    <div className="relative w-full sm:w-[70%] h-64 overflow-hidden bg-primary mt-16 sm:mt-20">
+    <div className="relative w-full sm:w-[70%] h-64 overflow-hidden bg-primary mt-16 sm:mt-20"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{

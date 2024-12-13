@@ -58,7 +58,7 @@ const Navbar = (props) => {
 
   return (
     <div className="navbar bg-secondary shadow-lg fixed top-0 w-full z-10">
-      <Link to="/" className="flex-1 ml-2">
+      <Link to="/" className="flex-1">
         <img className="w-8 h-8 rounded-full" src="/images/logo.jpeg" alt="Logo Cemaraa Resto" />
         <h2 className="btn btn-ghost hover:bg-transparent text-xl text-white font-bold tracking-tighter">CemaraaResto.</h2>
       </Link>
