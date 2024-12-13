@@ -1,19 +1,25 @@
-import Button from '../Elements/Button'
+import Button from "../Elements/Button";
 
 const CardProduct = (props) => {
-  const { children, onClick } = props;
+  const { children } = props;
   return (
-    <div className="sm:w-64 sm:max-w-xs bg-white border border-[#D1D5DB] rounded-lg w-full shadow mx-2 my-2 flex sm:flex-col sm:justify-between justify-around" onClick={onClick} >
+    <div
+      className="bg-white border border-gray-300 rounded-lg shadow-md flex items-center w-full p-2 sm:p-0 my-2 transition-transform transform hover:scale-105 hover:shadow-lg sm:mx-2 sm:my-2 sm:flex-col sm:w-64 sm:max-w-xs"
+    >
       {children}
-  </div>
+    </div>
   );
 };
 
 const Header = (props) => {
-  const { path_gambar } = props;
+  const { path_gambar, nama } = props;
   return (
-    <div>
-      <img className="sm:rounded-t-lg sm:p-4 p-2 sm:h-40 sm:w-full w-36 h-28 sm:object-cover object-center object-fill" src={path_gambar} alt="" />
+    <div className="flex-shrink-0 w-24 h-24 sm:w-full sm:h-40 overflow-hidden rounded-lg sm:rounded-none sm:rounded-t-lg">
+      <img
+        className="w-full h-full object-cover transition-transform transform hover:scale-110 sm:h-40"
+        src={path_gambar}
+        alt={nama}
+      />
     </div>
   );
 };
@@ -21,22 +27,35 @@ const Header = (props) => {
 const Body = (props) => {
   const { nama, harga } = props;
   return (
-    <div className="sm:px-5 flex items-center sm:justify-between justify-start w-48">
-      <div>
-        <h5 className="sm:text-lg text-md font-bold tracking-tighter text-secondary">{nama.substring(0,20)}</h5>
-        <span className="sm:text-lg text-sm font-bold text-secondary">{parseFloat(harga).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</span>
-      </div>
+    <div className="flex-grow sm:flex sm:flex-col sm:justify-between sm:items-start sm:w-full px-4 sm:py-3">
+      <h5 className="text-md font-semibold text-gray-800 truncate text-md">
+        {nama.substring(0, 40)}
+      </h5>
+      <p className="text-sm text-gray-600 font-medium mt-1">
+        {parseFloat(harga).toLocaleString("id-ID", {
+          style: "currency",
+          currency: "IDR",
+        })}
+      </p>
     </div>
   );
 };
 
 const Footer = (props) => {
-  const { onClick } = props;
-   return (
-    <div className="sm:px-5 sm:py-3 sm:mx-0 sm:mt-auto flex items-center h-full mx-2">
-      <Button classname="bg-primary hover:bg-emerald-700 sm:px-4 sm:h-10 w-full text-sm sm:text-md" onClick={onClick}>Lihat detail</Button>
+  const { onClick, onAddToCart } = props;
+  return (
+    <div className="flex items-center sm:px-4 sm:py-3 sm:mt-auto sm:justify-around sm:w-full">
+      <Button
+        classname="bg-primary text-white text-xs py-2 px-4 sm:h-8 sm:w-full rounded-md hover:bg-emerald-700"
+        onClick={onClick}
+      >
+        Lihat Detail
+      </Button>
+      <div className="ml-2 cursor-pointer" onClick={onAddToCart}>
+        <ion-icon size="large" name="cart-outline"></ion-icon>
+      </div>
     </div>
-   );
+  );
 };
 
 CardProduct.Header = Header;

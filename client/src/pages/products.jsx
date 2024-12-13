@@ -4,7 +4,7 @@ import Navbar from "../components/Fragments/Navbar.jsx";
 import Banner from "../components/Fragments/Banner";
 import Button from "../components/Elements/Button/index.jsx";
 import Footer from "../components/Fragments/Footer.jsx";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -14,39 +14,42 @@ const ProductsPage = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const categories = ["Semua", "Makanan", "Minuman"];
 
   const fetchProducts = async () => {
+    setIsLoading(true);
     try {
       const url = `https://bush-chivalrous-cornucopia.glitch.me`;
-      const response = await fetch(url + '/api/menu');
-  
+      const response = await fetch(url + "/api/menu");
+
       if (!response.ok) {
         throw new Error(`Error fetching products: ${response.statusText}`);
       }
-  
+
       const data = await response.json();
-  
+
       const updatedProducts = data.payload.datas.map((product) => ({
         ...product,
         harga: product.harga ? parseFloat(product.harga) : 0,
       }));
-      
+
       setAllProducts(updatedProducts);
       setProducts(updatedProducts);
+      setIsLoading(false);
     } catch (err) {
       console.error("Error fetching products:", err);
     }
   };
-  
+
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const handleSearch = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     if (!searchQuery.trim()) {
       setProducts(allProducts);
       return;
@@ -54,7 +57,9 @@ const ProductsPage = () => {
 
     try {
       const url = `https://bush-chivalrous-cornucopia.glitch.me`;
-      const response = await fetch(url + `/api/menu?search=${searchQuery.toLowerCase()}`);
+      const response = await fetch(
+        url + `/api/menu?search=${searchQuery.toLowerCase()}`
+      );
 
       if (!response.ok) {
         throw new Error(`Error fetching search prodcut`);
@@ -63,12 +68,13 @@ const ProductsPage = () => {
       const updatedProducts = data.payload.datas.map((product) => ({
         ...product,
         harga: product.harga ? parseFloat(product.harga) : 0,
-      }))
+      }));
       setProducts(updatedProducts);
+      setIsLoading(false);
     } catch (err) {
       console.error("Error during search", err);
     }
-  }
+  };
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -94,23 +100,22 @@ const ProductsPage = () => {
 
         setProducts(updatedProducts);
       })
-    .catch((error) => console.error("Error fetching data:", error))
-    .finally(() => {
-      setIsLoading(false);
-    });
+      .catch((error) => console.error("Error fetching data:", error))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
   }, []);
 
-
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
     if (savedCart) {
       setCart(savedCart);
     }
-  }, []); 
+  }, []);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -118,50 +123,45 @@ const ProductsPage = () => {
     }
   }, [cart]);
 
-  const handleAddToCart = (id) => {
-    Swal.fire({
-      title: "Apakah Anda yakin ingin memesan produk ini?",
-      text: "Pastikan Anda sudah memilih produk yang tepat sebelum melanjutkan. Anda akan memesan produk ini.",
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonColor: "#10B981",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yakin"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Produk Berhasil Ditambahkan!",
-          text: "Produk yang Anda pilih telah berhasil ditambahkan ke keranjang belanja Anda. Silakan lanjutkan belanja atau lihat keranjang Anda.",
-          icon: "success",
-          confirmButtonColor: "#10B981",
-          confirmButtonText: "OK"
-        });
-        setCart((prevCart) => {
-          const itemExist = prevCart.find((item) => item.id === id);
-      
-          let updatedCart;
-          if (itemExist) {
-            updatedCart = prevCart.map((item) =>
-              item.id === id ? { ...item, qty: item.qty + 1 } : item
-            );
-          } else {
-            updatedCart = [
-              ...prevCart,
-              {
-                id,
-                qty: 1,
-              },
-            ];
-          }
-      
-          localStorage.setItem("cart", JSON.stringify(updatedCart));
-      
-          return updatedCart;
-        });
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
+  const handleAddToCart = (id, nama) => {
+    Toast.fire({
+      icon: "success",
+      title: `Berhasil menambahkan ${nama} ke keranjang`,
+    });
+    setCart((prevCart) => {
+      const itemExist = prevCart.find((item) => item.id === id);
+
+      let updatedCart;
+      if (itemExist) {
+        updatedCart = prevCart.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item
+        );
+      } else {
+        updatedCart = [
+          ...prevCart,
+          {
+            id,
+            qty: 1,
+          },
+        ];
       }
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
     });
   };
-  
+
   const handleProductClick = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
@@ -171,15 +171,15 @@ const ProductsPage = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
-  
+
   const images = [
-    "",
-    "",
-    "",
-  ];
+      "",
+      "",
+      "",
+    ];
 
   return (
-    <div className="bg-background">
+    <div className="bg-background flex flex-col items-center">
       <Navbar />
 
       <Banner images={images}></Banner>
@@ -192,9 +192,14 @@ const ProductsPage = () => {
             className="px-4 py-2 rounded-md input-bordered w-full shadow sm:h-10"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            />
+          />
         </div>
-        <Button classname="bg-primary hover:bg-emerald-700 sm:px-4 sm:h-10 w-20 text-sm sm:text-md" onClick={handleSearch}>Cari</Button>
+        <Button
+          classname="bg-primary hover:bg-emerald-700 sm:px-4 sm:h-10 w-20 text-sm sm:text-md"
+          onClick={handleSearch}
+        >
+          Cari
+        </Button>
       </div>
 
       <div className="flex justify-center mt-5">
@@ -203,7 +208,7 @@ const ProductsPage = () => {
             <Button
               key={index}
               classname={`${
-                selectedCategory === category ? "bg-emerald-500" : "bg-gray-500"
+                selectedCategory === category ? "bg-primary" : "bg-gray-500 hover:bg-emerald-700"
               } text-white p-2 rounded-md`}
               onClick={() => handleCategoryChange(category)}
             >
@@ -214,37 +219,48 @@ const ProductsPage = () => {
       </div>
 
       {isLoading ? (
-      <div className="flex justify-center mt-5">
-        <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md">
-          {Array.from({ length: products.length > 0 ? products.length : 4 }).map((_, index) => (
-            <div key={index} className="flex w-52 flex-col gap-4">
-              <div className="skeleton h-32 w-full"></div>
-              <div className="skeleton h-4 w-28"></div>
-              <div className="skeleton h-4 w-full"></div>
-              <div className="skeleton h-4 w-full"></div>
-            </div>
-          ))}
+        <div className="flex justify-center mt-5">
+          <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md">
+            {Array.from({
+              length: 10,
+            }).map((_, index) => (
+              <div key={index} className="flex w-52 flex-col m-2 gap-2 mb-6">
+                <div className="skeleton h-32 sm:h-40 w-full"></div>
+                <div className="skeleton h-4 w-28"></div>
+                <div className="skeleton h-4 w-full"></div>
+                <div className="skeleton h-4 w-full"></div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      ):(
-      <div className="flex justify-center mt-5">
-        <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md mb-6">
-          {products.length > 0 &&
-            products.map((product) => {
-              return (
-                <CardProduct key={product.id} onClick={() => handleProductClick(product)}>
-                  <CardProduct.Header path_gambar={product.path_gambar} />
-                  <CardProduct.Body nama={product.nama} harga={product.harga} />
-                  <CardProduct.Footer
-                    onClick={() => {
-                      handleProductClick(product);
-                    }}
-                  />
-                </CardProduct>
-              );
-            })}
+      ) : (
+        <div className="flex justify-center mt-5">
+          <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md">
+            {products.length > 0 &&
+              products.map((product) => {
+                return (
+                  <CardProduct key={product.id}>
+                    <CardProduct.Header
+                      path_gambar={product.path_gambar}
+                      nama={product.nama}
+                    />
+                    <CardProduct.Body
+                      nama={product.nama}
+                      harga={product.harga}
+                    />
+                    <CardProduct.Footer
+                      onClick={() => {
+                        handleProductClick(product);
+                      }}
+                      onAddToCart={() => {
+                        handleAddToCart(product.id, product.nama);
+                      }}
+                    />
+                  </CardProduct>
+                );
+              })}
+          </div>
         </div>
-      </div>
       )}
 
       {isModalOpen && selectedProduct && (
@@ -258,18 +274,21 @@ const ProductsPage = () => {
             />
             <p>{selectedProduct.deskripsi}</p>
             <p className="font-semibold">
-              Harga: {selectedProduct.harga.toLocaleString("id-ID", {
+              Harga:{" "}
+              {selectedProduct.harga.toLocaleString("id-ID", {
                 style: "currency",
                 currency: "IDR",
               })}
             </p>
             <div className="flex gap-4 items-center mt-4">
               <Button onClick={handleCloseModal} classname="bg-red-500 w-1/2">
-                Close
+                Kembali
               </Button>
               <Button
                 classname="w-1/2 bg-primary hover:bg-emerald-700"
-                onClick={() => handleAddToCart(selectedProduct.id)}
+                onClick={() =>
+                  handleAddToCart(selectedProduct.id, selectedProduct.nama)
+                }
               >
                 Pesan
               </Button>

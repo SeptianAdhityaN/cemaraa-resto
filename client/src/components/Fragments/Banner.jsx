@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Banner = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef(null);
 
-  // Geser otomatis setiap 5 detik
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
+    const startAutoSlide = () => {
+      intervalRef.current = setInterval(() => {
+        nextSlide();
+      }, 5000);
+    };
 
-    return () => clearInterval(interval); // Membersihkan interval
-  }, [currentIndex]);
+    startAutoSlide();
 
-  // Fungsi untuk menggeser ke slide berikutnya
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -27,16 +30,17 @@ const Banner = ({ images }) => {
   };
 
   return (
-    <div className="relative h-64 overflow-hidden bg-primary mt-16">
+    <div className="relative w-full sm:w-[70%] h-64 overflow-hidden bg-primary mt-16 sm:mt-20">
       <div
-        className="flex transition-transform duration-500"
+        className="flex transition-transform duration-500 ease-in-out"
         style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
+          transform: `translateX(-${currentIndex * 100 / images.length  }%)`,
+          width: `${images.length * 100}%`,
         }}
       >
         {images.map((image, index) => (
           <img
-            key={index}
+            key={index} 
             src={image}
             alt={`Slide ${index}`}
             className="w-full h-64 object-cover"
@@ -45,14 +49,14 @@ const Banner = ({ images }) => {
       </div>
 
       <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 hover:bg-gray-700"
+        className="absolute top-1/2 transform -translate-y-1/2 text-white h-full px-4 hover:bg-gradient-to-r from-secondary/50 to-90% to-transparent duration-500"
         onClick={prevSlide}
       >
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
 
       <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-2 hover:bg-gray-700"
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white h-full px-4 hover:bg-gradient-to-l from-secondary/50 to-90% to-transparent duration-500"
         onClick={nextSlide}
       >
         <ion-icon name="chevron-forward-outline"></ion-icon>

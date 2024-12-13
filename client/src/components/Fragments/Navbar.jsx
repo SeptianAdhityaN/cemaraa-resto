@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Elements/Button";
 import { useState, useEffect } from "react";
 
 const Navbar = (props) => {
   const { onClick } = props;
+  const navigate = useNavigate();
   const username = localStorage.getItem("username");
   const email = localStorage.getItem("email");
 
@@ -51,12 +52,14 @@ const Navbar = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("email");
+
+    navigate("/login");
   };
 
   return (
     <div className="navbar bg-secondary shadow-lg fixed top-0 w-full z-10">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost hover:bg-transparent text-xl text-primary font-bold tracking-tighter">cemaraaresto.</Link>
+        <Link to="/" className="btn btn-ghost hover:bg-transparent text-xl text-white font-bold tracking-tighter">CemaraaResto.</Link>
       </div>
 
       <div className="flex-none">
@@ -118,7 +121,7 @@ const Navbar = (props) => {
               </a>
             </li>
             <li><a>Settings</a></li>
-            <Link to={"/login"}><Button classname="bg-red-500 hover:bg-red-700 h-8 my-2" onClick={handleLogout}>Logout</Button></Link>
+            <Button classname="bg-red-500 hover:bg-red-700 h-8 my-2 w-full" onClick={handleLogout}>Logout</Button>
           </ul>
         </div>
       </div>

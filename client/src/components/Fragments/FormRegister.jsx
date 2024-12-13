@@ -1,13 +1,18 @@
 import Button from "../Elements/Button";
 import InputForm from "../Elements/Input";
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
+  const navigate = useNavigate();
   const handleRegister = (event) => {
     event.preventDefault();
-    localStorage.setItem('username', event.target.text.value);
-    localStorage.setItem('email', event.target.email.value);
+    const username = event.target.text.value;
+    const email = event.target.email.value;
+    localStorage.setItem('username', username);
+    localStorage.setItem('email', email);
+
+    navigate('/login')
   } 
 
   const usernameRef = useRef(null);
@@ -45,7 +50,7 @@ const FormLogin = () => {
         placeholder="********"
       />
 
-      <Link to={'/login'}><Button classname="bg-primary w-full" type="submit">Register</Button></Link>
+      <Button classname="bg-primary w-full" type="submit">Register</Button>
     </form>
   );
 };
