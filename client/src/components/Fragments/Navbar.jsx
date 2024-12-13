@@ -58,9 +58,10 @@ const Navbar = (props) => {
 
   return (
     <div className="navbar bg-secondary shadow-lg fixed top-0 w-full z-10">
-      <div className="flex-1">
-        <Link to="/" className="btn btn-ghost hover:bg-transparent text-xl text-white font-bold tracking-tighter">CemaraaResto.</Link>
-      </div>
+      <Link to="/" className="flex-1 ml-2">
+        <img className="w-8 h-8 rounded-full" src="/images/logo.jpeg" alt="Logo Cemaraa Resto" />
+        <h2 className="btn btn-ghost hover:bg-transparent text-xl text-white font-bold tracking-tighter">CemaraaResto.</h2>
+      </Link>
 
       <div className="flex-none">
         <div className="dropdown dropdown-end">

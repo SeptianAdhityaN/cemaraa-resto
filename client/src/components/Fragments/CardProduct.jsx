@@ -4,7 +4,7 @@ const CardProduct = (props) => {
   const { children } = props;
   return (
     <div
-      className="bg-white border border-gray-300 rounded-lg shadow-md flex items-center w-full p-2 sm:p-0 my-2 transition-transform transform hover:scale-105 hover:shadow-lg sm:mx-2 sm:my-2 sm:flex-col sm:w-64 sm:max-w-xs"
+      className="bg-white border border-gray-300 rounded-lg shadow-md flex items-center w-full p-2 sm:p-0 transition-transform transform hover:scale-105 hover:shadow-lg sm:mx-2 sm:my-2 sm:flex-col sm:w-64 sm:max-w-xs"
     >
       {children}
     </div>
@@ -46,13 +46,19 @@ const Footer = (props) => {
   return (
     <div className="flex items-center sm:px-4 sm:py-3 sm:mt-auto sm:justify-around sm:w-full">
       <Button
-        classname="bg-primary text-white text-xs py-2 px-4 sm:h-8 sm:w-full rounded-md hover:bg-emerald-700"
+        classname="bg-primary text-white text-xs py-2 px-4 sm:h-8 sm:w-full rounded-md hover:bg-emerald-700 hidden sm:block"
         onClick={onClick}
       >
         Lihat Detail
       </Button>
-      <div className="ml-2 cursor-pointer" onClick={onAddToCart}>
-        <ion-icon size="large" name="cart-outline"></ion-icon>
+      <Button
+        classname="flex justify-center items-center bg-primary text-white text-2xl py-2 px-1 h-auto rounded-md hover:bg-emerald-700 sm:hidden"
+        onClick={onClick}
+      >
+        <ion-icon name="reader-outline"></ion-icon>
+      </Button>
+      <div className="ml-2 sm:mr-0 mr-2 cursor-pointer text-primary text-center text-3xl hover:text-emerald-700 flex justify-center items-center" onClick={onAddToCart}>
+        <ion-icon name="cart-outline"></ion-icon>
       </div>
     </div>
   );

@@ -173,9 +173,8 @@ const ProductsPage = () => {
   };
 
   const images = [
-      "",
-      "",
-      "",
+      "/images/banner.jpeg",
+      "/images/banner.jpeg",
     ];
 
   return (
@@ -235,7 +234,7 @@ const ProductsPage = () => {
         </div>
       ) : (
         <div className="flex justify-center mt-5">
-          <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md">
+          <div className="flex py-5 justify-center flex-wrap md:w-4/5 w-full rounded-md px-4">
             {products.length > 0 &&
               products.map((product) => {
                 return (
@@ -281,7 +280,7 @@ const ProductsPage = () => {
               })}
             </p>
             <div className="flex gap-4 items-center mt-4">
-              <Button onClick={handleCloseModal} classname="bg-red-500 w-1/2">
+              <Button onClick={handleCloseModal} classname="bg-red-500 hover:bg-red-700 w-1/2">
                 Kembali
               </Button>
               <Button
